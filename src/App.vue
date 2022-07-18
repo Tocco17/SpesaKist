@@ -24,7 +24,6 @@ export default defineComponent({
 </script>
 
 <template>
-
   <header>
     <nav class="
           flex flex-wrap
@@ -34,12 +33,12 @@ export default defineComponent({
           py-4
           md:py-0
           px-4
-          text-lg text-gray-700
-          bg-white
+          text-4xl text-gray-700
+          bg-gray-500
         ">
       <div>
         <a href="#">
-          Pippo
+          Spesa List
         </a>
       </div>
 
@@ -48,7 +47,8 @@ export default defineComponent({
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
       </svg>
 
-      <div class="w-full md:flex md:items-center md:w-auto" id="menu" v-if="authStore.isLogged" :class="{'hidden' : navbarOpened}">
+      <div class="w-full md:flex md:items-center md:w-auto" id="menu" v-if="authStore.isLogged"
+        :class="{ 'hidden': navbarOpened }">
         <ul class="
               pt-4
               text-base text-gray-700
@@ -75,7 +75,9 @@ export default defineComponent({
     </nav>
   </header>
 
-  <router-view />
+  <div class="bg-gray-400 min-h-screen p-5 flex flex-col flex-wrap justify-start">
+    <router-view />
+  </div>
 </template>
 
 <style>
