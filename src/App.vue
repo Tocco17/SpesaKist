@@ -11,6 +11,7 @@ export default defineComponent({
   },
   setup() {
     const authStore = useAuthStore();
+    // authStore.isLogged = true;
     return {
       authStore
     }
@@ -37,9 +38,7 @@ export default defineComponent({
           bg-gray-500
         ">
       <div>
-        <a href="#">
-          Spesa List
-        </a>
+        <router-link to="/">Spesa List</router-link>
       </div>
 
       <svg xmlns="http://www.w3.org/2000/svg" id="menu-button" class="h-6 w-6 cursor-pointer md:hidden block"
@@ -56,7 +55,7 @@ export default defineComponent({
               md:justify-between
               md:pt-0">
           <li>
-            <router-link to="/" class="md:p-4 py-2 block hover:text-purple-400" href="#">Features</router-link>
+            <router-link to="/" class="md:p-4 py-2 block hover:text-purple-400">Home</router-link>
           </li>
           <li>
             <a class="md:p-4 py-2 block hover:text-purple-400" href="#">Pricing</a>
@@ -75,7 +74,7 @@ export default defineComponent({
     </nav>
   </header>
 
-  <div class="bg-gray-400 min-h-screen p-5 flex flex-col flex-wrap justify-start">
+  <div class="bg-gray-400 min-h-screen p-5 flex flex-row flex-wrap justify-center content-start">
     <router-view />
   </div>
 </template>

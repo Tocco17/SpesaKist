@@ -36,9 +36,8 @@ export default defineComponent({
 })
 </script>
 
-
 <template>
-  <div class="bg-gray-500 flex flex-col flex-wrap justify-center ml-80 mr-80 p-10 rounded-lg">
+  <div class="bg-gray-500 flex flex-col flex-wrap justify-start ml-80 mr-80 p-10 rounded-lg">
     <h1 class="text-xl">Sign in to SpesaList</h1>
     <form @submit="login" class="mt-5 ">
       <!--//USERNAME-->
@@ -75,3 +74,6 @@ export default defineComponent({
     </form>
   </div>
 </template>
+
+<style>
+</style>
