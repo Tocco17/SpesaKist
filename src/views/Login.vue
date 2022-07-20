@@ -6,7 +6,8 @@ export default defineComponent({
   data() {
     return {
       username: "",
-      password: ""
+      password: "",
+      remember: false
     }
   },
   setup() {
@@ -17,7 +18,7 @@ export default defineComponent({
   },
   methods: {
     async login() {
-      const result = await this.authStore.login(this.username, this.password);
+      const result = await this.authStore.login(this.username, this.password, this.remember);
       if (result) {
         this.$router.push("/");
       }
@@ -62,7 +63,7 @@ export default defineComponent({
       <!--//REMEMBER ME-->
       <div class="flex items-start mb-6">
         <div class="flex items-center h-5">
-          <input id="remember" type="checkbox" value=""
+          <input id="remember" type="checkbox" v-model="remember"
             class="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800" />
         </div>
         <label for="remember" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember me</label>

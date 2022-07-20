@@ -11,7 +11,7 @@ export default defineComponent({
   },
   setup() {
     const authStore = useAuthStore();
-    // authStore.isLogged = true;
+    authStore.isLogged = true;
     return {
       authStore
     }
