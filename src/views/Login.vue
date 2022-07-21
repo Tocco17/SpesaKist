@@ -29,16 +29,13 @@ export default defineComponent({
     },
   },
   computed: {
-    reveresePhone() {
-      return this.phone.split().reverse().join()
-    }
   }
 
 })
 </script>
 
 <template>
-  <div class="bg-gray-500 flex flex-col flex-wrap justify-start ml-80 mr-80 p-10 rounded-lg">
+  <div class="bg-gray-500 flex flex-col flex-wrap justify-start ml-50 mr-50 p-10 rounded-lg">
     <h1 class="text-xl">Sign in to SpesaList</h1>
     <form @submit="login" class="mt-5 ">
       <!--//USERNAME-->
@@ -48,7 +45,7 @@ export default defineComponent({
         </label>
         <input type="username" id="username" v-model="username"
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          placeholder="name@flowbite.com" />
+          placeholder="Insert email" />
       </div>
 
       <!--//PASSWORD-->
@@ -57,7 +54,8 @@ export default defineComponent({
           Your password
         </label>
         <input type="password" id="password" v-model="password"
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Insert password" />
       </div>
 
       <!--//REMEMBER ME-->
