@@ -1,10 +1,10 @@
 import { defineStore } from 'pinia'
+import router from '../plugins/router'
 
 export const useAuthStore = defineStore('auth', {
     state: () => {
-        let isLogged = !!localStorage.getItem('auth')
         return {
-            isLogged
+            _isLogged: false
         }
     },
     actions: {
@@ -13,12 +13,19 @@ export const useAuthStore = defineStore('auth', {
                 localStorage.setItem('auth', { username, password })
 
             return new Promise((resolve, reject) => {
-                this.isLogged = true;
+                this._isLogged = true;
                 resolve(true);
             });
         },
-        isSavedInLocalStorage() {
-
-        },
+        logout() {
+            this._isLogged = false;
+            localStorage.clear();
+            router.push('/login');
+        }
+    },
+    getters: {
+        isLogged() {
+            return this._isLogged || !!localStorage.getItem('auth')
+        }
     }
 })

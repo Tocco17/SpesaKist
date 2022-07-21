@@ -1,6 +1,7 @@
 <script>
 import { defineComponent } from "vue";
 import { useAuthStore } from "./stores/authStore";
+import { Helper } from "./utils/tests"
 
 
 export default defineComponent({
@@ -11,17 +12,18 @@ export default defineComponent({
   },
   setup() {
     const authStore = useAuthStore();
-    authStore.isLogged = true;
     return {
       authStore
     }
   },
   methods: {
-
+    logout() {
+      console.log('Logout clicked')
+      this.authStore.logout()
+    }
   }
 
 })
-
 </script>
 
 <template>
@@ -58,16 +60,16 @@ export default defineComponent({
             <router-link to="/" class="md:p-4 py-2 block hover:text-purple-400">Home</router-link>
           </li>
           <li>
-            <a class="md:p-4 py-2 block hover:text-purple-400" href="#">Pricing</a>
+            <router-link to="/Articles" class="md:p-4 py-2 block hover:text-purple-400">Articles</router-link>
           </li>
           <li>
-            <a class="md:p-4 py-2 block hover:text-purple-400" href="#">Customers</a>
+            <router-link to="/Recipies" class="md:p-4 py-2 block hover:text-purple-400">Recipies</router-link>
           </li>
           <li>
-            <a class="md:p-4 py-2 block hover:text-purple-400" href="#">Blog</a>
-          </li>
           <li>
-            <a class="md:p-4 py-2 block hover:text-purple-400 text-purple-500" href="#">Sign Up</a>
+            <button class="md:p-4 py-2 block hover:text-purple-400" @click="logout">Sign out
+            </button>
+          </li>
           </li>
         </ul>
       </div>
