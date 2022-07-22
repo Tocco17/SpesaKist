@@ -1,8 +1,6 @@
 <script>
 import { defineComponent } from "vue";
 import { useAuthStore } from "./stores/authStore";
-import { Helper } from "./utils/tests"
-
 
 export default defineComponent({
   data() {
@@ -20,9 +18,15 @@ export default defineComponent({
     logout() {
       console.log('Logout clicked')
       this.authStore.logout()
+    },
+    isCurrentPage(path) {
+      const isActive = path === this.$route.path
+      return {
+        active: isActive,
+        'text-purple-500': isActive
+      }
     }
   }
-
 })
 </script>
 
@@ -57,19 +61,25 @@ export default defineComponent({
               md:justify-between
               md:pt-0">
           <li>
-            <router-link to="/" class="md:p-4 py-2 block hover:text-purple-400">Home</router-link>
+            <router-link to="/" class="md:p-4 py-2 block hover:text-purple-400" :class="isCurrentPage('/')">
+              Home
+            </router-link>
           </li>
           <li>
-            <router-link to="/Articles" class="md:p-4 py-2 block hover:text-purple-400">Articles</router-link>
+            <router-link to="/Articles" class="md:p-4 py-2 block hover:text-purple-400"
+              :class="isCurrentPage('/Articles')">
+              Articles
+            </router-link>
           </li>
           <li>
-            <router-link to="/Recipies" class="md:p-4 py-2 block hover:text-purple-400">Recipies</router-link>
+            <router-link to="/Recipies" class="md:p-4 py-2 block hover:text-purple-400"
+              :class="isCurrentPage('/Recipies')">
+              Recipies
+            </router-link>
           </li>
-          <li>
           <li>
             <button class="md:p-4 py-2 block hover:text-purple-400" @click="logout">Sign out
             </button>
-          </li>
           </li>
         </ul>
       </div>
@@ -80,6 +90,3 @@ export default defineComponent({
     <router-view />
   </div>
 </template>
-
-<style>
-</style>
