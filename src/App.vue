@@ -25,6 +25,17 @@ export default defineComponent({
         active: isActive,
         'text-purple-500': isActive
       }
+    },
+  },
+  computed: {
+    pageClass() {
+      const isLoginPage = this.isCurrentPage("/Login")
+
+      const classes = isLoginPage
+        ? "flex flex-row flex-wrap justify-center content-start"
+        : ""
+
+      return classes
     }
   }
 })
@@ -86,7 +97,7 @@ export default defineComponent({
     </nav>
   </header>
 
-  <div class="bg-gray-400 min-h-screen p-5 flex flex-row flex-wrap justify-center content-start">
+  <div class="bg-gray-400 min-h-screen p-5" :class="pageClass">
     <router-view />
   </div>
 </template>
