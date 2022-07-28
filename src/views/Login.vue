@@ -36,8 +36,12 @@ export default defineComponent({
 
 <template>
   <div class="bg-gray-500 flex flex-col flex-wrap justify-start ml-50 mr-50 p-10 rounded-lg">
+    <!--//Header-->
     <h1 class="text-xl">Sign in to SpesaList</h1>
+
+    <!--//FORM-->
     <form @submit="login" class="mt-5 ">
+
       <!--//USERNAME-->
       <div class="mb-6">
         <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
