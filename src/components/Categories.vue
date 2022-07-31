@@ -3,17 +3,29 @@ import { useArticlesStore } from "../stores/articlesStore";
 
 export default {
     name: 'categories',
-    data() {
-        return {
-            categories: this.articlesStore.getCategories
-        }
-    },
     setup() {
         const articlesStore = useArticlesStore();
         return {
             articlesStore
         }
     },
+    methods: {
+        categoryClicked(index) {
+            this.articlesStore.changeCategoryCheck(index)
+        }
+    },
+    computed: {
+        categories() {
+            console.log('categories.vue / categories =>')
+
+            const categories = this.articlesStore.categories
+            console.log('categories', categories)
+
+            console.log('<= categories.vue / categories')
+
+            return categories
+        }
+    }
 }
 </script>
 
@@ -26,7 +38,7 @@ export default {
         <ul class="flex flex-col">
             <li v-for="(category, index) in categories">
                 <input :id="`category-${index}`" type="checkbox" value="true" :checked="category.checked"
-                    @click="category.checked = !category.checked">
+                    @click="categoryClicked(index)">
                 <label :for="`category-${index}`">{{ category.value }}</label>
             </li>
         </ul>
