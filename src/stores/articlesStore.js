@@ -1,9 +1,6 @@
 import { defineStore } from 'pinia'
-import router from '../plugins/router'
 
 function getArticles() {
-    console.log("articlesStore.js/getArticles =>")
-
     const articles = [{
             id: 1,
             name: 'Zuchini',
@@ -11,7 +8,8 @@ function getArticles() {
                 'food',
                 'kitchen'
             ],
-            image: 'Zucchina.jpg'
+            image: 'Zucchina.jpg',
+            checked: false,
         },
         {
             id: 2,
@@ -20,7 +18,8 @@ function getArticles() {
                 'food',
                 'kitchen'
             ],
-            image: 'Pomodoro.jpg'
+            image: 'Pomodoro.jpg',
+            checked: false,
         },
         {
             id: 3,
@@ -28,29 +27,28 @@ function getArticles() {
             categories: [
                 'vehicles'
             ],
-            image: ''
+            image: '',
+            checked: false,
         }
     ];
 
-    console.log("articles", articles)
-
-    console.log("<= articlesStore.js/getArticles")
     return articles;
 }
 
 function getCategories() {
-    console.log("articlesStore.js/getCategories =>")
+    let count = 0
 
     const categoriesAux = getArticles().reduce((category, article) => {
         category.push(...article.categories)
         return [...new Set(category)]
     }, [])
-    const categories = categoriesAux.map(x => x = { checked: false, value: x })
 
-    console.log("categoriesAux", categoriesAux)
-    console.log("categories", categories)
+    const categories = categoriesAux.map(x => x = {
+        checked: false,
+        text: x,
+        id: count++,
+    })
 
-    console.log("<= articlesStore.js/getCategories")
     return categories
 }
 
@@ -62,28 +60,44 @@ export const useArticlesStore = defineStore('articles', {
         }
     },
     actions: {
-        changeCategoryCheck(index) {
+        changeCategoryCheck(id) {
+            const index = this._categories.indexOf(c => c.id === id)
             this._categories[index].checked = !this._categories[index].checked
         },
-        saveNewList(name) {
-
-        }
+        changeArticleCheck(id) {
+            const index = this._articles.indexOf(a => a.id === id)
+            this._articles[index].checked = !this._articles[index].checked
+        },
     },
     getters: {
-        articles() {
-            console.log("articlesStore.js/articles =>")
+        article(id) {
+            if (!id) {
+                console.error('Id not defined for the search of an article')
+                return
+            }
 
-            const selectedCategories = this._categories.filter(x => x.checked).map(x => x.value)
+            return this._articles.find(a => a.id === id)
+        },
+        articles() {
+            return this._articles
+        },
+        articlesFiltered() {
+            const selectedCategories = this._categories.filter(x => x.checked).map(x => x.text)
             const filteredArticles = selectedCategories.length == 0 ?
                 this._articles :
                 this._articles.filter(a => a.categories.some(c => selectedCategories.includes(c)))
-
-            console.log('selectedCategories', selectedCategories)
-            console.log('filteredArticles', filteredArticles)
-
-            console.log("<= articlesStore.js/articles")
-
             return filteredArticles
+        },
+        articlesChecked() {
+            return this._articles.filter(a => a.checked)
+        },
+        category(id) {
+            if (!id) {
+                console.error('Id not defined for the search of a category')
+                return
+            }
+
+            return this._categories.find(c => c.id === id)
         },
         categories() {
             return this._categories

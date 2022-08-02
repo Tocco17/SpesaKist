@@ -20,9 +20,6 @@ export default defineComponent({
       this.authStore.logout()
     },
     isCurrentPage(path) {
-      console.log('App.vue/isCurrentPage =>')
-      console.log('this.$route.path', this.$route.path)
-      console.log('<= App.vue/isCurrentPage')
       return path === this.$route.path
     },
     activePage(path) {
@@ -31,13 +28,9 @@ export default defineComponent({
   },
   computed: {
     pageClass() {
-      console.log('App.vue/pageClass =>')
-
       if (this.isCurrentPage('/login')) return 'flex flex-row flex-wrap justify-center content-start'
 
       if (this.isCurrentPage('/Articles')) return 'flex flex-col flex-wrap justify-start'
-
-      console.log('App.vue/pageClass =>')
     }
   }
 })

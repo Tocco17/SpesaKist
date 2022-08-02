@@ -10,8 +10,8 @@ export default {
         }
     },
     methods: {
-        categoryClicked(index) {
-            this.articlesStore.changeCategoryCheck(index)
+        checked(id) {
+            this.articlesStore.changeCategoryCheck(id)
         }
     },
     computed: {
@@ -29,10 +29,10 @@ export default {
 
         <!--//LIST-->
         <ul class="flex flex-col">
-            <li v-for="(category, index) in categories">
-                <input :id="`category-${index}`" type="checkbox" value="true" :checked="category.checked"
-                    @click="categoryClicked(index)">
-                <label :for="`category-${index}`">{{ category.value }}</label>
+            <li v-for="category in categories">
+                <input :id="`category-${category.id}`" type="checkbox" value="true" :checked="category.checked"
+                    @click="checked(category.id)">
+                <label :for="`category-${category.id}`">{{ category.text }}</label>
             </li>
         </ul>
     </div>

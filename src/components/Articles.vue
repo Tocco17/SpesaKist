@@ -20,13 +20,13 @@ export default {
         hover(article) {
             this.$emit('article-hover', article)
         },
-        click(article) {
-            this.$emit('article-click', article)
-        }
+        checked(id) {
+            this.articlesStore.changeArticleCheck(id)
+        },
     },
     computed: {
         articles() {
-            return this.articlesStore.articles
+            return this.articlesStore.articlesFiltered
         },
     }
 }
@@ -39,10 +39,10 @@ export default {
 
         <!--//LIST-->
         <ul class="flex flex-col">
-            <li v-for="(article, index) in articles" @mouseover="hover(article)" @click="click(article)">
-                <input v-if="toCheck" :id="`article-${index}`" type="checkbox" value="true" :checked="article.checked"
-                    @click="articleClicked(index)">
-                <label :for="`article-${index}`">{{ article.name }}</label>
+            <li v-for="article in articles" @mouseover="hover(article)">
+                <input v-if="toCheck" :id="`article-${article.id}`" type="checkbox" value="true"
+                    :checked="article.checked" @click="checked(article.id)">
+                <label :for="`article-${article.id}`">{{ article.name }}</label>
             </li>
         </ul>
     </div>
