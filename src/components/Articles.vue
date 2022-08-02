@@ -3,6 +3,13 @@ import { useArticlesStore } from "../stores/articlesStore";
 
 export default {
     name: 'articles',
+    props: {
+        toCheck: {
+            type: Boolean,
+            default: false,
+            required: false
+        }
+    },
     setup() {
         const articlesStore = useArticlesStore();
         return {
@@ -10,6 +17,12 @@ export default {
         }
     },
     methods: {
+        hover(article) {
+            this.$emit('article-hover', article)
+        },
+        click(article) {
+            this.$emit('article-click', article)
+        }
     },
     computed: {
         articles() {
@@ -20,14 +33,16 @@ export default {
 </script>
 
 <template>
-    <div class="bg-gray-500 flex flex-col flex-wrap justify-start ml-50 mr-50 p-10 rounded-lg">
+    <div class="flex flex-col flex-wrap justify-start p-10">
         <!--//HEADER-->
-        <h2 class="">Articles</h2>
+        <h2 class="text-2xl">Articles</h2>
 
         <!--//LIST-->
         <ul class="flex flex-col">
-            <li v-for="article in articles">
-                <label>{{ article.name }}</label>
+            <li v-for="(article, index) in articles" @mouseover="hover(article)" @click="click(article)">
+                <input v-if="toCheck" :id="`article-${index}`" type="checkbox" value="true" :checked="article.checked"
+                    @click="articleClicked(index)">
+                <label :for="`article-${index}`">{{ article.name }}</label>
             </li>
         </ul>
     </div>
