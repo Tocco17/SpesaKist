@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import router from '../plugins/router'
 
 function getArticles() {
-    console.log("getArticles =>")
+    console.log("articlesStore.js/getArticles =>")
 
     const articles = [{
             id: 1,
@@ -11,7 +11,7 @@ function getArticles() {
                 'food',
                 'kitchen'
             ],
-            image: '../assets/Zucchina.jpg'
+            image: 'Zucchina.jpg'
         },
         {
             id: 2,
@@ -20,7 +20,7 @@ function getArticles() {
                 'food',
                 'kitchen'
             ],
-            image: '../assets/Pomodoro.jpg'
+            image: 'Pomodoro.jpg'
         },
         {
             id: 3,
@@ -34,12 +34,12 @@ function getArticles() {
 
     console.log("articles", articles)
 
-    console.log("<= getArticles")
+    console.log("<= articlesStore.js/getArticles")
     return articles;
 }
 
 function getCategories() {
-    console.log("getCategories =>")
+    console.log("articlesStore.js/getCategories =>")
 
     const categoriesAux = getArticles().reduce((category, article) => {
         category.push(...article.categories)
@@ -50,7 +50,7 @@ function getCategories() {
     console.log("categoriesAux", categoriesAux)
     console.log("categories", categories)
 
-    console.log("<= getCategories")
+    console.log("<= articlesStore.js/getCategories")
     return categories
 }
 
@@ -63,19 +63,15 @@ export const useArticlesStore = defineStore('articles', {
     },
     actions: {
         changeCategoryCheck(index) {
-            console.log('changeCategoryCheck =>')
-
             this._categories[index].checked = !this._categories[index].checked
-
-            console.log('index', index)
-            console.log('categories[index]', this._categories[index])
-
-            console.log('<= changeCategoryCheck')
         },
+        saveNewList(name) {
+
+        }
     },
     getters: {
         articles() {
-            console.log("articles =>")
+            console.log("articlesStore.js/articles =>")
 
             const selectedCategories = this._categories.filter(x => x.checked).map(x => x.value)
             const filteredArticles = selectedCategories.length == 0 ?
@@ -85,15 +81,11 @@ export const useArticlesStore = defineStore('articles', {
             console.log('selectedCategories', selectedCategories)
             console.log('filteredArticles', filteredArticles)
 
-            console.log("<= articles")
+            console.log("<= articlesStore.js/articles")
 
             return filteredArticles
         },
         categories() {
-            console.log('categories =>')
-            console.log('categories', this._categories)
-            console.log('<= categories')
-
             return this._categories
         },
     },

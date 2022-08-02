@@ -20,22 +20,24 @@ export default defineComponent({
       this.authStore.logout()
     },
     isCurrentPage(path) {
-      const isActive = path === this.$route.path
-      return {
-        active: isActive,
-        'text-purple-500': isActive
-      }
+      console.log('App.vue/isCurrentPage =>')
+      console.log('this.$route.path', this.$route.path)
+      console.log('<= App.vue/isCurrentPage')
+      return path === this.$route.path
     },
+    activePage(path) {
+      if (this.isCurrentPage(path)) return 'text-purple-500'
+    }
   },
   computed: {
     pageClass() {
-      const isLoginPage = this.isCurrentPage("/Login")
+      console.log('App.vue/pageClass =>')
 
-      const classes = isLoginPage
-        ? "flex flex-row flex-wrap justify-center content-start"
-        : ""
+      if (this.isCurrentPage('/login')) return 'flex flex-row flex-wrap justify-center content-start'
 
-      return classes
+      if (this.isCurrentPage('/Articles')) return 'flex flex-col flex-wrap justify-start'
+
+      console.log('App.vue/pageClass =>')
     }
   }
 })
@@ -72,19 +74,19 @@ export default defineComponent({
               md:justify-between
               md:pt-0">
           <li>
-            <router-link to="/" class="md:p-4 py-2 block hover:text-purple-400" :class="isCurrentPage('/')">
+            <router-link to="/" class="md:p-4 py-2 block hover:text-purple-400" :class="activePage('/')">
               Home
             </router-link>
           </li>
           <li>
             <router-link to="/Articles" class="md:p-4 py-2 block hover:text-purple-400"
-              :class="isCurrentPage('/Articles')">
+              :class="activePage('/Articles')">
               Articles
             </router-link>
           </li>
           <li>
             <router-link to="/Recipies" class="md:p-4 py-2 block hover:text-purple-400"
-              :class="isCurrentPage('/Recipies')">
+              :class="activePage('/Recipies')">
               Recipies
             </router-link>
           </li>

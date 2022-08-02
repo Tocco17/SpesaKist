@@ -16,15 +16,8 @@ export default {
     },
     computed: {
         categories() {
-            console.log('categories.vue / categories =>')
-
-            const categories = this.articlesStore.categories
-            console.log('categories', categories)
-
-            console.log('<= categories.vue / categories')
-
-            return categories
-        }
+            return this.articlesStore.categories
+        },
     }
 }
 </script>
