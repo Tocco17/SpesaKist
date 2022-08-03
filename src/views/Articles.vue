@@ -25,7 +25,7 @@ export default defineComponent({
     },
     methods: {
         articleHover(article) {
-            // this.articleImgSrc = '/src/assets/' + article.image
+            this.articleImgSrc = article.image
         },
         saveNewList() {
             console.log('Articles.vue/saveNewList =>')
@@ -44,6 +44,10 @@ export default defineComponent({
 
             return 'border-black border-2 rounded p-2'
 
+        },
+        getImgUrl() {
+            var images = require.context('../assets/', false, /\.jpg$/)
+            return images('./' + this.articleImgSrc)
         }
     },
 })
@@ -56,7 +60,8 @@ export default defineComponent({
         <articles class="m-1" @article-hover="articleHover" :toCheck="false" />
 
         <div>
-            <img :src="articleImgSrc">
+            <img v-if="false" :src="require(`${articleImgSrc}`)">
+            <img :src="getImgUrl">
         </div>
     </div>
     <div class="flex flex-row-reverse justify-between items-center">
