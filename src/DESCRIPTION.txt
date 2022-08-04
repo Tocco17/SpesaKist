@@ -1,0 +1,42 @@
+DESCRIZIONE
+Il sito deve permettere di creare una lista per la spesa
+Deve permettere di salvare e riprendere velocemente tutto ciò che serve per la spesa
+
+PAGINE
+
+1) CREAZIONE LISTA PER LA SPESA
+Deve permettere di scorrere fra gli articoli necessari, messi per categoria e sottocategoria
+e selezionare gli articoli da comprare e la quantità
+Ci deve essere anche la possibilità di modificare l'articolo
+
+2) CREAZIONE ARTICOLO DA COMPRARE
+L'articolo deve avere un nome, può essere impostata una categoria, può essere settata a 
+'da acquistare una sola volta' o 'routine' (es. barbecue -> 'una sola volta', sapone -> 'routine')
+Nell'impostare una categoria è possibile crearne una nuova, che può anche essere una sottocategoria
+E' possibile anche impostare una scadenza di acquisto (acquisto necessario entro tot)
+oppure una routine automatica (ogni tot tempo è necessario acquistare l'articolo)
+E' possibile impostare anche un negozio dove è possibile acquistarlo
+Un'immagine dell'articolo
+Altre note generali
+
+3) LISTA ARTICOLI
+Pagina dove è possibile spulciare tutti gli articoli salvati
+Creare o modificare un articolo
+Aggiungerlo ad una lista per la spesa
+
+4) HOME
+Si può vedere tutte le liste per la spesa attive
+	- Una sola volta
+	- Routine
+	- Entro tot
+	- Lista attiva attuale
+
+5) RICETTE
+Lista di ricette, ovvero di lista e quantità di prodotti da acquistare per la ricetta
+Non è necessario che sia cibo
+In altre parole sono liste della spesa pre-salvate
+Permette di creare e modificare le ricette
+
+6) CREAZIONE E MODIFICA DI RICETTE
+Crea una ricetta, selezionando gli articoli da acquistare e la categoria
+Permette di aggiungere o modificare un articolo
