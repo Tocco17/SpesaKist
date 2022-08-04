@@ -5,6 +5,7 @@ export default {
     name: 'newArticle',
     data() {
         return {
+            categories: this.articlesStore.categories
         }
     },
     setup() {
@@ -14,6 +15,13 @@ export default {
         }
     },
     methods: {
+        optionClicked() {
+            console.log('NewArticle.vue/optionClicked =>')
+            const select = document.querySelector("#newArticleCategoriesInput")
+            console.log('select', select)
+            console.log('select.value', select.value)
+            console.log('<= NewArticle.vue/optionClicked')
+        }
     },
     computed: {
         articles() {
@@ -28,9 +36,6 @@ export default {
         labelClass() {
             return 'mr-1'
         },
-        categories() {
-            return this.articlesStore.categories
-        }
     }
 }
 </script>
@@ -45,8 +50,10 @@ export default {
 
     <div :class="divClass">
         <label for="newArticleCategoriesInput" :class="labelClass">List Name:</label>
-        <v-select :item-text="categories.text" :item-value="categories.id" :item-disabled="false"></v-select>
-        <input id="newArticleCategoriesInput" :class="inputClass" type="text" placeholder="Insert a name list" />
+        <select id="newArticleCategoriesInput" :class="inputClass" data-placeholder="Select a category">
+            <option v-for="category in categories" :value="category.id" @click="optionClicked">{{ category.text }}
+            </option>
+        </select>
     </div>
 
     <button class="bg-green-800 rounded-md text-xl text-white p-2" @click="saveNewList">Save</button>

@@ -46,6 +46,8 @@ export default defineComponent({
 
         },
         getImgUrl() {
+            return ''
+
             var images = require.context('../assets/', false, /\.jpg$/)
             return images('./' + this.articleImgSrc)
         }
