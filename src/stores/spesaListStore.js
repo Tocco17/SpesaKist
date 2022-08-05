@@ -1,7 +1,73 @@
 import { defineStore } from 'pinia'
 
 function getSpesaList() {
-    const spesaList = [];
+    const spesaList = [{
+            id: 0,
+            name: 'Coop',
+            articles: [{
+                    id: 0,
+                    name: 'Zucchine',
+                    needed: 3,
+                    taken: 0,
+                    check: false,
+                },
+                {
+                    id: 1,
+                    name: 'Pomodori',
+                    needed: 2,
+                    taken: 0,
+                    check: false,
+                },
+                {
+                    id: 1,
+                    name: 'Pomodori',
+                    needed: 2,
+                    taken: 0,
+                    check: false,
+                },
+                {
+                    id: 1,
+                    name: 'Pomodori',
+                    needed: 2,
+                    taken: 0,
+                    check: false,
+                },
+                {
+                    id: 1,
+                    name: 'Pomodori',
+                    needed: 2,
+                    taken: 0,
+                    check: false,
+                },
+                {
+                    id: 1,
+                    name: 'Pomodori',
+                    needed: 2,
+                    taken: 0,
+                    check: false,
+                },
+            ]
+        },
+        {
+            id: 1,
+            name: 'Concessionaria',
+            articles: [{
+                    id: 2,
+                    name: 'Moto',
+                    needed: 1,
+                    taken: 0,
+                    check: false,
+                },
+                {
+                    id: 3,
+                    name: 'Casco',
+                    needed: 1,
+                    taken: 0,
+                    check: false,
+                }
+            ]
+        },
+    ];
 
     return spesaList;
 }
@@ -13,11 +79,11 @@ export const useSpesaListStore = defineStore('spesaList', {
         }
     },
     actions: {
-        saveNewList(name, articleList) {
+        saveNewList(name, articles) {
             this._spesaList.push({
                 id: this.getNewId(),
                 name,
-                articleList,
+                articles,
             })
         },
         getNewId() {
